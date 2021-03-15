@@ -1,5 +1,5 @@
 {
-  "name": "pillbuddy",
+  "name": "Pillbuddy",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -7,13 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --config webpack.common.js --watch",
     "watch-background": "webpack --config webpack.electron.js --watch",
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --mac"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^12.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -23,6 +23,8 @@
     "@babel/preset-react": "^7.12.13",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.1.2",
+    "electron": "^12.0.1",
+    "electron-builder": "^22.10.5",
     "electron-reload": "^1.5.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.25.0",

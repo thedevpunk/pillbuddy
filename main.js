@@ -8,11 +8,13 @@ const isDev = !app.isPackaged;
 let mainWindow;
 let backgroundTaskWindow;
 
+let isMainWindowActive = false;
+
 function createWindow() {
    mainWindow = new BrowserWindow({
       title: 'Pillbuddy',
-      width: 1200,
-      height: 600,
+      width: 600,
+      height: 400,
       backgroundColor: "white",
       webPreferences: {
          nodeIntegration: false,
@@ -23,7 +25,13 @@ function createWindow() {
       }
    });
 
+   mainWindow.on('close', () => {
+      isMainWindowActive = false;
+   });
+
+   isMainWindowActive = true;
    mainWindow.loadFile('index.html');
+
 }
 
 function createBackgroundTaskWindow() {
@@ -31,7 +39,7 @@ function createBackgroundTaskWindow() {
       title: 'background',
       width: 400,
       height: 225,
-      show: true,
+      show: false,
       webPreferences: {
          nodeIntegration: false,
          worldSafeExecuteJavaScript: true,
@@ -56,8 +64,8 @@ if (isDev) {
 app.whenReady().then(() => {
    createWindow();
    createBackgroundTaskWindow();
-   mainWindow.webContents.openDevTools();
-   backgroundTaskWindow.webContents.openDevTools();
+   // mainWindow.webContents.openDevTools();
+   // backgroundTaskWindow.webContents.openDevTools();
 });
 
 app.on('window-all-closed', () => {
@@ -90,7 +98,9 @@ ipcMain.on('notification-date-request', (event) => {
 });
 
 ipcMain.on('notification-date-response', (event, date) => {
-
-   mainWindow.webContents.send('notification-date-response', date);
+   
+   if (isMainWindowActive) {
+      mainWindow.webContents.send('notification-date-response', date);
+   }
 });
 
