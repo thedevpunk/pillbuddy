@@ -1,19 +1,25 @@
 import React from 'react';
+import styles from './Question.module.css';
 
-const Question = ({ takePill, pillTakenToday }) => {
+const Question = ({ takePill, isPillTakenToday }) => {
 
-  if (pillTakenToday) {
+  if (isPillTakenToday()) {
     return (
-      <h1>Good</h1>
+      <div className={styles.container}>
+        <h1>Ich frage dich morgen wieder ob du deine Tablette genommen hast. 😉</h1>
+      </div>
     )
   }
 
   return (
-    <>
-      <img src="./static/pill.svg" width="40" />
-      <h1>Hast du heute schon deine Tablette genommen?</h1>
-      <button onClick={takePill}>Ja klar</button>
-    </>
+    <div className={styles.container}>
+      {/* <img src="./static/pill.svg" width="40" /> */}
+      <h1>Hast du heute schon deine Tablette genommen? 🤔</h1>
+      <button
+        onClick={takePill}
+        className={styles.button}
+      >Ja klar</button>
+    </div>
   )
 }
 

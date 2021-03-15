@@ -1,7 +1,7 @@
-.pill {
-
+.container {
+  align-items: center;
 }
 
-.question {
-  
+.button {
+  margin-top: 1em;
 }

@@ -27,6 +27,7 @@ button {
    padding: 0.5em 1em;
    background-color: var(--primaryColor);
    color: var(--whitestColor);
+   cursor: pointer;
    transition: background-color ease 0.2s;
 }
 
