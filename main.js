@@ -84,8 +84,8 @@ app.on('activate', () => {
 ipcMain.on('notify', (event, message) => {
    new Notification({
       title: 'Pillbuddy says',
-      body: message,
-      icon: path.join(__dirname, './static/pill.png')
+      body: message
+      // icon: path.join(__dirname, './static/pill.png')
    }).show();
 });
 
