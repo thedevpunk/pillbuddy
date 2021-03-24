@@ -4,10 +4,10 @@ import Question from './Question';
 
 const App = () => {
    const [notificationDate, setNotificationDate] = useState(new Date(Date.now()));
-   
+
    useEffect(() => {
       electron.customApi.sendNotificationDateRequest();
-      
+
       electron.customApi.receiveNotificationDateResponse((date) => {
          console.log(date);
          setNotificationDate(date);
@@ -29,15 +29,31 @@ const App = () => {
       electron.customApi.sendNotificationDateRequest();
    };
 
+   const handleToggleSettings = () => {
+
+   }
+
    return (
+      <div className={styles.root}>
+
+         <div className={styles.header}>
+            <div className={styles.link} onClick={handleToggleSettings}>Settings</div>
+         </div>
+
          <div className={styles.main}>
 
-            <Question
-               isPillTakenToday={isPillTakenToday}
-               takePill={handleTakePill}
-            />
+            <div className={styles.settings}>
+
+            </div>
+            <div className={styles.question}>
+               <Question
+                  isPillTakenToday={isPillTakenToday}
+                  takePill={handleTakePill}
+               />
+            </div>
 
          </div>
+      </div>
    )
 }
 
